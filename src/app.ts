@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://house-renting-nine.vercel.app',
+    // origin: 'https://house-renting-nine.vercel.app',
+    origin: 'http://localhost:3000',
     credentials: true,
   }),
 );
@@ -21,7 +22,7 @@ app.use(express.urlencoded());
 app.use('/api/v1', router);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the House Renting Project!');
+  res.send('Welcome to the Portfolio Project!');
 });
 
 // global error handler

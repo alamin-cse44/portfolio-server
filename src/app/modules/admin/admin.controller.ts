@@ -41,20 +41,8 @@ const blockSignleUserById = catchAsync(async (req, res) => {
   });
 });
 
-const getAllListings = catchAsync(async (req, res) => {
-  const result = await AdminServices.getAllListingsFromDB(req.query);
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: 'Listings are retrieved successfully',
-    data: result,
-  });
-});
-
 export const AdminControllers = {
   updateRole,
   getAllUsers,
   blockSignleUserById,
-  getAllListings,
 };

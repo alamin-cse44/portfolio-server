@@ -22,4 +22,4 @@ skillSchema.statics.isSkillExistById = async function (id: string) {
   return await Skill.findById(id);
 };
 
-export const Skill = model<ISkill, SkillModel>('Project', skillSchema);
+export const Skill = model<ISkill, SkillModel>('Skill', skillSchema);
