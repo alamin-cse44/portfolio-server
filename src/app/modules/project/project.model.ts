@@ -12,18 +12,21 @@ const projectSchema = new Schema<IProject, ProjectModel>(
       ref: 'User',
       required: true,
     },
+    briefDescription: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    service: {
+      type: String,
+      trim: true,
+      required: true,
+    },
     description: {
       type: String,
       trim: true,
+      required: true,
     },
-    // price: {
-    //   type: Number,
-    //   required: [true, 'Please enter the price of the house'],
-    //   validate: {
-    //     validator: (value: number) => value >= 0,
-    //     message: 'The house price must be a non-negative number',
-    //   },
-    // },
     images: [
       {
         url: { type: String, required: true },
@@ -32,7 +35,7 @@ const projectSchema = new Schema<IProject, ProjectModel>(
     ],
     technologies: [
       {
-        name: { type: String, required: true },
+        value: { type: String, required: true },
         _id: false,
       },
     ],

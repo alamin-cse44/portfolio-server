@@ -1,36 +1,36 @@
 import { z } from 'zod';
 
-const createListingValidaitonSchema = z.object({
+const createProjectValidaitonSchema = z.object({
   body: z.object({
-    apartmentType: z.string({ required_error: 'Must provide Apartment Type' }),
-    landLord: z.string({ required_error: 'Must provide a LandLord' }),
-    location: z.string({ required_error: 'location must be provided' }),
+    title: z.string({ required_error: 'Must provide title' }),
+    user: z.string({ required_error: 'Must provide a user' }),
+    briefDescription: z.string({
+      required_error: 'Brief Description must be provided',
+    }),
+    service: z.string({ required_error: 'service must be provided' }),
     description: z.string({ required_error: 'description must be provided' }),
-    price: z.number().min(1).max(1000000),
-    bedrooms: z.number().min(1).max(30),
-    category: z.string({ required_error: 'category must be provided' }),
   }),
 });
 
-const updateListingValidaitonSchema = z.object({
+const updateProjectValidaitonSchema = z.object({
   body: z.object({
-    apartmentType: z
-      .string({ required_error: 'Must provide Apartment Type' })
+    title: z.string({ required_error: 'Must provide title' }).optional(),
+    user: z.string({ required_error: 'Must provide a user' }).optional(),
+    briefDescription: z
+      .string({
+        required_error: 'Brief Description must be provided',
+      })
       .optional(),
-    landLord: z
-      .string({ required_error: 'Must provide a LandLord' })
+    service: z
+      .string({ required_error: 'service must be provided' })
       .optional(),
-    location: z.string().optional(),
-    description: z.string().optional(),
-    price: z.number().min(1).max(1000000).optional(),
-    bedrooms: z.number().min(1).max(30).optional(),
-    category: z
-      .string({ required_error: 'category must be provided' })
+    description: z
+      .string({ required_error: 'description must be provided' })
       .optional(),
   }),
 });
 
-export const ListingValidations = {
-  createListingValidaitonSchema,
-  updateListingValidaitonSchema,
+export const ProjectValidations = {
+  createProjectValidaitonSchema,
+  updateProjectValidaitonSchema,
 };

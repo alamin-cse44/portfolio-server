@@ -4,9 +4,11 @@ import { IUser } from '../user/user.interface';
 export interface IProject {
   title: string;
   user: Types.ObjectId | IUser;
+  briefDescription: string;
+  service: string;
   description: string;
   images: { url: string }[];
-  technologies: { name: string }[];
+  technologies: { value: string }[];
 }
 
 export type ProjectDocument = IProject & Document;

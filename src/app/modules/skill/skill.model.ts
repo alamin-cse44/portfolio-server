@@ -6,6 +6,7 @@ const skillSchema = new Schema<ISkill, SkillModel>(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
     icon: {
       type: String,
