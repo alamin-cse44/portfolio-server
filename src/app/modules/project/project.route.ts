@@ -14,7 +14,7 @@ router.post(
   ProjectControllers.createProject,
 );
 
-router.get('/', auth(USER_ROLE.admin), ProjectControllers.getAllProjects);
+router.get('/', ProjectControllers.getAllProjects);
 
 router.get('/:id', ProjectControllers.getProjectById);
 

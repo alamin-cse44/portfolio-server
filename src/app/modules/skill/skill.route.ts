@@ -14,7 +14,7 @@ router.post(
   SkillControllers.createSkill,
 );
 
-router.get('/', auth(USER_ROLE.admin), SkillControllers.getAllSkills);
+router.get('/', SkillControllers.getAllSkills);
 
 router.get('/:id', SkillControllers.getSkillById);
 

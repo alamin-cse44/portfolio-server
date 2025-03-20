@@ -15,8 +15,6 @@ const createProject = catchAsync(async (req, res) => {
 });
 
 const getAllProjects = catchAsync(async (req, res) => {
-  //   console.log('req user', req.user);
-  const { userId } = req.user;
   const result = await ProjectServices.getAllProjectsFromDB(req.query);
 
   sendResponse(res, {

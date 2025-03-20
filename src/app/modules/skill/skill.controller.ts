@@ -15,8 +15,7 @@ const createSkill = catchAsync(async (req, res) => {
 });
 
 const getAllSkills = catchAsync(async (req, res) => {
-  //   console.log('req user', req.user);
-  const { userId } = req.user;
+  
   const result = await SkillServices.getAllSkillsFromDB(req.query);
 
   sendResponse(res, {

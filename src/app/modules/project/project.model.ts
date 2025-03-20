@@ -22,6 +22,16 @@ const projectSchema = new Schema<IProject, ProjectModel>(
       trim: true,
       required: true,
     },
+    status: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    live: {
+      type: String,
+      trim: true,
+      required: true,
+    },
     description: {
       type: String,
       trim: true,
