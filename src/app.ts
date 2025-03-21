@@ -12,9 +12,8 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      'http://localhost:3006',
-      'http://localhost:3000',
       'https://rehan-alamin-portfolio.netlify.app',
+      'https://portfolio-admin-roan.vercel.app',
     ],
     credentials: true,
   }),
