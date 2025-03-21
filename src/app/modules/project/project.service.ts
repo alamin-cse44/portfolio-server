@@ -1,57 +1,56 @@
 import { StatusCodes } from 'http-status-codes';
 import QeryBuilder from '../../builder/QeryBuilder';
 import AppError from '../../errors/AppError';
+import { projectSearchableFields } from './project.constant';
+import { IProject } from './project.interface';
 import { Project } from './project.model';
-import { IBlog } from '../blog/blog.interface';
-import { Blog } from '../blog/blog.model';
-import { blogSearchableFields } from '../blog/blog.constant';
 
-const createBlogIntoDB = async (payload: IBlog) => {
-  const result = await Blog.create(payload);
+const createProjectIntoDB = async (payload: IProject) => {
+  const result = await Project.create(payload);
 
   return result;
 };
 
-const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
-  
-  const blogQuery = new QeryBuilder(Project.find(), query)
-    .search(blogSearchableFields)
+const getAllProjectsFromDB = async (query: Record<string, unknown>) => {
+  // TODO: Populate
+  const projectQuery = new QeryBuilder(Project.find().populate('user'), query)
+    .search(projectSearchableFields)
     .filter()
     .sort()
     .sortByAscOrDesc()
     .paginate()
     .fields();
 
-  const result = await blogQuery.modelQuery;
+  const result = await projectQuery.modelQuery;
 
   return result;
 };
 
-const getBlogByIdFromDB = async (id: string) => {
-  // check if Blog exists by id
-  const blog = await Blog.isBlogExistById(id);
+const getProjectByIdFromDB = async (id: string) => {
+  // check if project exists by id
+  const project = await Project.isProjectExistById(id);
 
-  if (!blog) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
+  if (!project) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Project not found');
   }
-  const result = await Blog.findById(id);
+  const result = await Project.findById(id).populate('user');
 
   return result;
 };
 
-const updateBlogByIdIntoDB = async (
+const updateProjectByIdIntoDB = async (
   id: string,
-  payload: Partial<IBlog>,
+  payload: Partial<IProject>,
 ) => {
-  // check if Blog exists by id
-  const blog = await Blog.isBlogExistById(id);
+  // check if project exists by id
+  const project = await Project.isProjectExistById(id);
 
-  if (!blog) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
+  if (!project) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Project not found');
   }
 
-  // update the Blog
-  const result = await Blog.findByIdAndUpdate(id, payload, {
+  // update the project
+  const result = await Project.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   });
@@ -59,24 +58,24 @@ const updateBlogByIdIntoDB = async (
   return result;
 };
 
-const deleteBlogByIdFromDB = async (id: string) => {
-  // check if Blog exists by id
-  const blog = await Blog.isBlogExistById(id);
+const deleteProjectByIdFromDB = async (id: string) => {
+  // check if project exists by id
+  const project = await Project.isProjectExistById(id);
 
-  if (!blog) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
+  if (!project) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Project not found');
   }
 
-  // delete the Blog
-  const result = await Blog.findByIdAndDelete(id);
+  // delete the project
+  const result = await Project.findByIdAndDelete(id);
 
   return result;
 };
 
-export const BlogServices = {
-  createBlogIntoDB,
-  getAllBlogsFromDB,
-  getBlogByIdFromDB,
-  updateBlogByIdIntoDB,
-  deleteBlogByIdFromDB,
+export const ProjectServices = {
+  createProjectIntoDB,
+  getAllProjectsFromDB,
+  getProjectByIdFromDB,
+  updateProjectByIdIntoDB,
+  deleteProjectByIdFromDB,
 };

@@ -3,7 +3,7 @@ import auth from '../../middlewares/auth';
 import { USER_ROLE } from '../user/user.constant';
 import validateRequest from '../../middlewares/validateRequest';
 import { BlogValidations } from './blog.validation';
-import { BlogControllers } from '../project/project.controller';
+import { BlogControllers } from './blog.controller';
 
 const router = express.Router();
 

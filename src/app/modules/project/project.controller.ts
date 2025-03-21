@@ -1,70 +1,71 @@
 import { StatusCodes } from 'http-status-codes';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
-import { BlogServices } from './project.service';
+import { ProjectServices } from './project.service';
 
-const createBlog = catchAsync(async (req, res) => {
-  const result = await BlogServices.createBlogIntoDB(req.body);
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: 'Blog is created successfully',
-    data: result,
-  });
-});
-
-const getAllBlogs = catchAsync(async (req, res) => {
-  const result = await BlogServices.getAllBlogsFromDB(req.query);
+const createProject = catchAsync(async (req, res) => {
+  const result = await ProjectServices.createProjectIntoDB(req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Blogs are retrieved successfully',
+    message: 'Project is created successfully',
     data: result,
   });
 });
 
-const getBlogById = catchAsync(async (req, res) => {
+const getAllProjects = catchAsync(async (req, res) => {
+  
+  const result = await ProjectServices.getAllProjectsFromDB(req.query);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Projects are retrieved successfully',
+    data: result,
+  });
+});
+
+const getProjectById = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogServices.getBlogByIdFromDB(id);
+  const result = await ProjectServices.getProjectByIdFromDB(id);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Blog is retrieved successfully',
+    message: 'Project is retrieved successfully',
     data: result,
   });
 });
 
-const updateBlogById = catchAsync(async (req, res) => {
+const updateProjectById = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogServices.updateBlogByIdIntoDB(id, req.body);
+  const result = await ProjectServices.updateProjectByIdIntoDB(id, req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Blog is updated successfully',
+    message: 'Project is updated successfully',
     data: result,
   });
 });
 
-const deleteBlogById = catchAsync(async (req, res) => {
+const deleteProjectById = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogServices.deleteBlogByIdFromDB(id);
+  const result = await ProjectServices.deleteProjectByIdFromDB(id);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Blog is deleted successfully',
+    message: 'Project is deleted successfully',
     data: result,
   });
 });
 
-export const BlogControllers = {
-  createBlog,
-  getAllBlogs,
-  getBlogById,
-  updateBlogById,
-  deleteBlogById,
+export const ProjectControllers = {
+  createProject,
+  getAllProjects,
+  getProjectById,
+  updateProjectById,
+  deleteProjectById,
 };
