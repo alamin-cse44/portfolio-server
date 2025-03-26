@@ -11,13 +11,17 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      'https://rehan-alamin-portfolio.netlify.app',
-      'https://portfolio-admin-roan.vercel.app',
-    ],
-    credentials: true,
+    origin: '*',
   }),
 );
+// app.use(
+//   cors({
+//     origin: [
+//       'https://rehan-alamin-portfolio.netlify.app',
+//       'https://portfolio-admin-roan.vercel.app',
+//     ],
+//   }),
+// );
 app.use(express.urlencoded());
 
 // application routing
